@@ -1,0 +1,57 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:SpaceTransport.Scripts.Converters"
+        xmlns:ViewModels="clr-namespace:SpaceTransport.Scripts.ViewModels" x:Class="SpaceTransport.Views.RouteCreationWindow"
+        mc:Ignorable="d"
+    Title="RouteCreation" Height="487.936" Width="831.395">
+    <Window.Resources>
+        <converters:OrbitalDistanceConverter x:Key="DistanceConverter"/>
+        <converters:TurnConverter x:Key="TurnConverter"/>
+        <ViewModels:RouteCreationViewModel x:Key="RouteCreationViewModel"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource RouteCreationViewModel}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220*"/>
+            <ColumnDefinition Width="603*"/>
+        </Grid.ColumnDefinitions>
+        <ComboBox x:Name="CombxOrigin" ItemsSource="{Binding Orbitals}" 
+                  DisplayMemberPath="Name" SelectedValue="{Binding SelectedOrigin}"
+                  HorizontalAlignment="Left" Margin="90,40,0,0" 
+                  VerticalAlignment="Top" Width="120" Height="25" SelectionChanged="CombxOrigin_SelectionChanged"/>
+        <Label Grid.Column="0" Content="Origin" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
+        <ComboBox Grid.Column="0" x:Name="ComboBoxDestination" 
+                  HorizontalAlignment="Left" Margin="90,70,0,0" 
+                  VerticalAlignment="Top" Width="120" Height="25" 
+                  SelectedValue="{Binding SelectedDestination}"/>
+        <Label Grid.Column="0" Content="Destination" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
+        <ComboBox Grid.Column="0" x:Name="CombxVehicle" HorizontalAlignment="Left" Margin="90,101,0,0" VerticalAlignment="Top" Width="120" Height="25" 
+                  ItemsSource="{Binding Vehicles}" DisplayMemberPath="VehicleClass" SelectedValue="{Binding SelectedVehicle}" SelectionChanged="CombxVehicle_SelectionChanged"/>
+        <Label Grid.Column="0" Content="Vehicle" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
+        <ComboBox x:Name="ComboxCargo" Grid.Column="0" HorizontalAlignment="Left" Margin="90,132,0,0" VerticalAlignment="Top" Width="120" Height="25" SelectedValue="{Binding CargoType}" SelectionChanged="ComboxCargo_SelectionChanged"/>
+        <Label Grid.Column="0" x:Name="CombxCargo" Content="CargoType" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top" Height="26" Width="75"/>
+        <Label Content="Distance" Grid.Column="1" HorizontalAlignment="Left" Margin="10,39,0,0" VerticalAlignment="Top"/>
+        <Label Content="Vehicle Speed" Grid.Column="1" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top"/>
+        <Label Content="Turns to Complete" Grid.Column="1" HorizontalAlignment="Left" Margin="10,101,0,0" VerticalAlignment="Top"/>
+        <Label Content="Total Value" Grid.Column="1" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LblTurns" Grid.Column="1" HorizontalAlignment="Left" Margin="123,101,0,0" VerticalAlignment="Top">
+            <MultiBinding Converter="{StaticResource TurnConverter}">
+                <Binding ElementName="LblDistance" Path="Content"/>
+                <Binding ElementName="LblSpeed" Path="Content"/>
+            </MultiBinding>
+        </Label>
+        <Label x:Name="LblValue" Grid.Column="1" HorizontalAlignment="Left" Margin="123,132,0,0" VerticalAlignment="Top" Content="{Binding TotalValue, FallbackValue=0}" ContentStringFormat="${0}"/>
+        <Label x:Name="LblSpeed"  Grid.Column="1" HorizontalAlignment="Left" Margin="123,70,0,0" VerticalAlignment="Top" Content="{Binding SelectedVehicle.Speed}" ContentStringFormat="{}{0}km/s"/>
+
+        <Label x:Name="LblDistance" Grid.Column="1" HorizontalAlignment="Left" Margin="123,39,0,0" VerticalAlignment="Top" ContentStringFormat="{}{0}km">
+            <MultiBinding Converter="{StaticResource DistanceConverter}">
+                <Binding Path="SelectedOrigin"/>
+                <Binding Path="SelectedDestination"/>
+            </MultiBinding>
+        </Label>
+        <Button Content="Create Route" Grid.Column="1" HorizontalAlignment="Left" Margin="518,427,0,0" VerticalAlignment="Top" Width="75" Command="{Binding BtnClick}"/>
+
+    </Grid>
+</Window>
