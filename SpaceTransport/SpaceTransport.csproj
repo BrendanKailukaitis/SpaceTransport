@@ -60,32 +60,41 @@
     <Compile Include="Scripts\CargoType.cs" />
     <Compile Include="Scripts\Company.cs" />
     <Compile Include="Scripts\Converters\TurnConverter.cs" />
+    <Compile Include="Scripts\Interfaces\IRequireViewIdentification.cs" />
+    <Compile Include="Scripts\Managers\WindowManager.cs" />
     <Compile Include="Scripts\RelayCommand.cs" />
     <Compile Include="Scripts\EventSystem\Event.cs" />
     <Compile Include="Scripts\EventSystem\EventManager.cs" />
-    <Compile Include="Scripts\GameManager.cs" />
-    <Compile Include="Scripts\Interfaces\ICloseable.cs" />
+    <Compile Include="Scripts\Managers\GameManager.cs" />
     <Compile Include="Scripts\Orbital.cs" />
     <Compile Include="Scripts\Route.cs" />
     <Compile Include="Scripts\Vehicle.cs" />
     <Compile Include="Scripts\ViewModels\BaseViewModel.cs" />
+    <Compile Include="Scripts\ViewModels\HomeScreenViewModel.cs" />
     <Compile Include="Scripts\ViewModels\RouteCreationViewModel.cs" />
-    <Compile Include="Views\RouteCreationWindow.xaml.cs">
-      <DependentUpon>RouteCreationWindow.xaml</DependentUpon>
+    <Compile Include="Scripts\ViewModels\RouteViewModel.cs" />
+    <Compile Include="Views\HomeScreenView.xaml.cs">
+      <DependentUpon>HomeScreenView.xaml</DependentUpon>
     </Compile>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Include="Views\RouteCreationView.xaml.cs">
+      <DependentUpon>RouteCreationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RouteView.xaml.cs">
+      <DependentUpon>RouteView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Views\RouteCreationWindow.xaml">
+    <Page Include="Views\HomeScreenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RouteCreationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RouteView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

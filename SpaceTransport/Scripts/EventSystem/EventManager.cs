@@ -14,14 +14,16 @@ namespace SpaceTransport.Scripts.EventSystem
 
     public static class EventManager
     {
-        delegate void EventListener(Event e);
-        static Dictionary<Type, List<Handler>> _eventListeners;
+        private delegate void EventListener(Event e);
+
+        private static Dictionary<Type, List<Handler>> _eventListeners;
 
         public static void RegisterListener<T>(Action<T> listener) where T : Event
         {
             var target = listener.Target;
             var method = listener.Method;
 
+            // Get type of event.
             Type eventType = typeof(T);
 
             if (_eventListeners == null)

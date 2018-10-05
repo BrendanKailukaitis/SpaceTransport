@@ -5,11 +5,20 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using SpaceTransport.Scripts.Interfaces;
 
 namespace SpaceTransport.Scripts.ViewModels
 {
-    public abstract class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged, IRequireViewIdentification
     {
+        private Guid _viewGuid;
+
+        public Guid ViewGuid { get; }
+
+        protected BaseViewModel()
+        {
+            _viewGuid = Guid.NewGuid();
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected bool SetProperty<T>(ref T field, T newValue, [CallerMemberName]string propertyName = null)

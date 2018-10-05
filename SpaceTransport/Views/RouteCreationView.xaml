@@ -4,15 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:converters="clr-namespace:SpaceTransport.Scripts.Converters"
-        xmlns:ViewModels="clr-namespace:SpaceTransport.Scripts.ViewModels" x:Class="SpaceTransport.Views.RouteCreationWindow"
+        xmlns:ViewModels="clr-namespace:SpaceTransport.Scripts.ViewModels"
+        x:Class="SpaceTransport.Views.RouteCreationView"
         mc:Ignorable="d"
     Title="RouteCreation" Height="487.936" Width="831.395">
     <Window.Resources>
         <converters:OrbitalDistanceConverter x:Key="DistanceConverter"/>
         <converters:TurnConverter x:Key="TurnConverter"/>
-        <ViewModels:RouteCreationViewModel x:Key="RouteCreationViewModel"/>
     </Window.Resources>
-    <Grid DataContext="{StaticResource RouteCreationViewModel}">
+    <Window.DataContext>
+        <ViewModels:RouteCreationViewModel/>
+    </Window.DataContext>
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="220*"/>
             <ColumnDefinition Width="603*"/>

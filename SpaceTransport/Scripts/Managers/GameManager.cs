@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using SpaceTransport.Scripts.EventSystem;
 
-namespace SpaceTransport.Scripts
+namespace SpaceTransport.Scripts.Managers
 {
     public sealed class GameManager
     {

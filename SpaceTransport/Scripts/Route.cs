@@ -36,16 +36,18 @@ namespace SpaceTransport.Scripts
         private void OnNextTurn(NextTurnEvent nte)
         {
             TurnsToCompletion--;
-            if (TurnsToCompletion <= 0)
+            if (TurnsToCompletion > 0)
             {
-                EventManager.UnregisterListener<NextTurnEvent>(OnNextTurn);
-
-                RouteCompletedEvent rce = new RouteCompletedEvent()
-                {
-                    Route = this
-                };
-                EventManager.Invoke(rce);
+                return;
             }
+
+            EventManager.UnregisterListener<NextTurnEvent>(OnNextTurn);
+
+            RouteCompletedEvent rce = new RouteCompletedEvent()
+            {
+                Route = this
+            };
+            EventManager.Invoke(rce);
         }
 
         public override string ToString()

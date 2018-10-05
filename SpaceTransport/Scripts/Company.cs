@@ -21,19 +21,19 @@ namespace SpaceTransport.Scripts
             EventManager.RegisterListener<RouteCreatedEvent>(OnRouteCreated);
             EventManager.RegisterListener<RouteCompletedEvent>(OnRouteCompleted);
 
-            this.Name = name;
-            this.Value = 0;
-            this.Vehicles = new List<Vehicle>();
-            this.Routes = new List<Route>();
+            Name = name;
+            Value = 0;
+            Vehicles = new List<Vehicle>();
+            Routes = new List<Route>();
         }
 
-        void OnRouteCreated(RouteCreatedEvent rce)
+        private void OnRouteCreated(RouteCreatedEvent rce)
         {
             Routes.Add(rce.Route);
             Debug.Print($"{rce.Route} route Created!");
         }
 
-        void OnRouteCompleted(RouteCompletedEvent rce)
+        private void OnRouteCompleted(RouteCompletedEvent rce)
         {
             Routes.Remove(rce.Route);
 

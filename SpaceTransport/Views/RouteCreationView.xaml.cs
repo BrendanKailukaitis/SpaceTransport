@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using SpaceTransport.Scripts;
 using SpaceTransport.Scripts.Interfaces;
+using SpaceTransport.Scripts.Managers;
 using SpaceTransport.Scripts.ViewModels;
 
 namespace SpaceTransport.Views
@@ -13,18 +14,12 @@ namespace SpaceTransport.Views
     /// <summary>
     /// Interaction logic for RouteCreation.xaml
     /// </summary>
-    public partial class RouteCreationWindow : Window, ICloseable
+    public partial class RouteCreationView : Window
     {
-        public RouteCreationWindow()
+        public RouteCreationView()
         {
             InitializeComponent();
             //DataContext = new RouteCreationViewModel();
-            RouteCreationViewModel viewModel = new RouteCreationViewModel();
-            DataContext = viewModel;
-            if (viewModel.CloseAction == null)
-            {
-                viewModel.CloseAction = new Action(this.Close);
-            }
 
         }
 
@@ -41,7 +36,7 @@ namespace SpaceTransport.Views
         {
             Vehicle vehicle = CombxVehicle.SelectedItem as Vehicle;
             var cargoType = Enum.GetValues(typeof(CargoType)).Cast<CargoType>().Where(
-                v => v.ToString() == vehicle.CargoType.ToString());
+                v => vehicle != null && v.ToString() == vehicle.CargoType.ToString());
 
             ComboxCargo.ItemsSource = cargoType;
         }

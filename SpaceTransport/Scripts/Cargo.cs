@@ -13,8 +13,8 @@ namespace SpaceTransport.Scripts
 
         public Cargo(CargoType ct, int value)
         {
-            this.CargoType = ct;
-            this.Value = value;
+            CargoType = ct;
+            Value = value;
         }
     }
 }

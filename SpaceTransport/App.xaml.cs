@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using SpaceTransport.Scripts.Managers;
 
 namespace SpaceTransport
 {
@@ -13,5 +14,9 @@ namespace SpaceTransport
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            GameManager.Instance.Generate();
+        }
     }
 }
